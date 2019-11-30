@@ -12,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
             Word word = new Word(data.getStringExtra(NewWordActivity.EXTRA_REPLY));
             // Save the data
             mWordViewModel.insert(word);
+            Log.d("Test", "" + word);
         } else {
             Toast.makeText(
                     this, R.string.empty_not_saved, Toast.LENGTH_LONG).show();

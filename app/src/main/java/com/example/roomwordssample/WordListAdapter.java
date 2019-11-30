@@ -14,7 +14,9 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     private final LayoutInflater mInflater;
     private List<Word> mWords; // Cached copy of words
 
-    WordListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    WordListAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+    }
 
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,11 +31,16 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             holder.wordItemView.setText(current.getWord());
         } else {
             // Covers the case of data not being ready yet.
-            holder.wordItemView.setText("No Word");
+            // holder.wordItemView.setText("No Word");
+            holder.wordItemView.setText(R.string.no_word);
         }
     }
 
-    void setWords(List<Word> words){
+    /**
+     *     Associate a list of words with this adapter
+     */
+
+    void setWords(List<Word> words) {
         mWords = words;
         notifyDataSetChanged();
     }
@@ -47,7 +54,15 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         else return 0;
     }
 
-    public Word getWordAtPosition (int position) {
+    /**
+     * Get the word at a given position.
+     * This method is useful for identifying which word
+     * was clicked or swiped in methods that handle user events.
+     *
+     * @param position
+     * @return The word at the given position
+     */
+    public Word getWordAtPosition(int position) {
         return mWords.get(position);
     }
 

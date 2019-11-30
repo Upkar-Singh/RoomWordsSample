@@ -12,19 +12,19 @@ import java.util.List;
 @Dao
 public interface WordDao {
 
-    //@Insert
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Word word);
 
     @Query("DELETE FROM word_table")
     void deleteAll();
 
-    @Query("SELECT * from word_table ORDER BY word ASC")
-    LiveData<List<Word>> getAllWords();
+    @Delete
+    void deleteWord(Word word);
 
     @Query("SELECT * from word_table LIMIT 1")
     Word[] getAnyWord();
 
-    @Delete
-    void deleteWord(Word word);
+    @Query("SELECT * from word_table ORDER BY word ASC")
+    LiveData<List<Word>> getAllWords();
+
 }
